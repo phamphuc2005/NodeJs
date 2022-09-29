@@ -7,6 +7,11 @@ const port = 3002;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.urlencoded({
+  extended: true
+}));
+app.use(express.json());
+
 app.use(morgan('combined'))
 
 app.engine('hbs', handlebars.engine({
@@ -25,6 +30,10 @@ app.get('/news', (req, res) => {
 
 app.get('/search', (req, res) => {
   res.render('search');
+});
+
+app.post('/search', (req, res) => {
+  res.send('');
 });
 
 app.listen(port, () => {
