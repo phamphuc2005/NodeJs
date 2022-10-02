@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const slug = require('mongoose-slug-generator');
 const mongooseDelete = require('mongoose-delete');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const Course = new Schema({
   name: { type: String, required: true },
@@ -19,6 +20,7 @@ const Course = new Schema({
 
 // Add plugins
 mongoose.plugin(slug);
+// Course.plugin(AutoIncrement);
 Course.plugin(mongooseDelete, {
     deletedAt: true,
     overrideMethods: 'all',
